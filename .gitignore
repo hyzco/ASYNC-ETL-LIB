@@ -173,3 +173,8 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+dist
+pnpm-lock.yaml
+node_modules
+.npmrc

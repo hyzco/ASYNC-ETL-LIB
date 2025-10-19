@@ -1,13 +1,20 @@
 {
-  "name": "etl",
-  "version": "1.0.0",
+  "version": "0.0.2",
+  "name": "@hyzco/async-etl-lib",
   "description": "A flexible ETL library for data mapping and transformation pipelines",
   "author": "Hasan Ali Yuzgec",
   "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyzco/ASYNC-ETL-LIB.git"
+  },
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "typings": "./dist/esm/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -18,7 +25,9 @@
   "files": [
     "esm",
     "cjs",
-    "src"
+    "src",
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "clean": "rimraf dist",
@@ -30,7 +39,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bun run ./src/index.ts",
     "debug": "bun --inspect ./src/index.ts",
-    "prepare": "pnpm run clean & pnpm run build"
+    "prepare": "pnpm run clean & pnpm run build",
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "etl",
