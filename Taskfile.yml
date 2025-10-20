@@ -26,7 +26,7 @@ tasks:
       - pnpm run build
 
   bump-version:
-    desc: "Bump iam-lib version (patch, minor, or major)"
+    desc: "Bump iam-lib version (patch, minor, or major) and commit changes"
     vars:
       TYPE: '{{default "patch" .TYPE}}'
     cmds:
@@ -42,12 +42,17 @@ tasks:
         NEW_VERSION=$(node -p "require('./package.json').version")
         echo "✅ iam-lib version updated: $CURRENT_VERSION → $NEW_VERSION"
 
+        echo "📦 Committing version update..."
+        git add package.json
+        git commit -m "chore: bump version to v$NEW_VERSION"
+        echo "✅ Version update committed"
+
   publish-package:
     desc: "Publish ASYNC-ETL-LIB to npm registry"
     cmds:
       - |
         echo "Publishing ASYNC-ETL-LIB"
-        (cd ../ASYNC-ETL-LIB && pnpm publish)
+        (cd ../ASYNC-ETL-LIB && pnpm publish --no-git-checks)
 
   publish:
     desc: "Bump iam-lib version and publish to npm registry"
