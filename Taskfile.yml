@@ -20,6 +20,11 @@ tasks:
     cmds:
       - pnpm install
 
+  build:
+    desc: "Build the project"
+    cmds:
+      - pnpm run build
+
   bump-version:
     desc: "Bump iam-lib version (patch, minor, or major)"
     vars:
@@ -53,3 +58,17 @@ tasks:
         vars:
           TYPE: "{{.TYPE}}"
       - task: publish-package
+
+  ci:
+    desc: "Run CI tasks: install, build, test"
+    cmds:
+      - task: install
+      - task: build
+      - echo "Starting CI tasks..."
+      - echo "Uploading coverage reports..."
+      - codecov --token=${{ secrets.CODECOV_TOKEN }}
+      - cmd: pnpm test:coverage
+    env:
+      CI: "true"
+      NODE_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+      GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
