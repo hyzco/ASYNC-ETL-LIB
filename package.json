@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "@hyzco/async-etl-lib",
   "description": "A flexible ETL library for data mapping and transformation pipelines",
   "author": "Hasan Ali Yuzgec",

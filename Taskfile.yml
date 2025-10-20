@@ -32,7 +32,7 @@ tasks:
     cmds:
       - |
         echo "🔍 Reading current version..."
-        cd ../iam-lib
+        cd ../ASYNC-ETL-LIB
         CURRENT_VERSION=$(node -p "require('./package.json').version")
         echo "Current version: $CURRENT_VERSION"
 
